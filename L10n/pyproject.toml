@@ -1,0 +1,11 @@
+[tool.black]
+line-length = 92
+target_version = [ "py34",]
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+    | www/src
+  )/
+)
+'''

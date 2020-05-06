@@ -1,10 +1,18 @@
-brython
-=======
 
-Brython (Browser Python) is an implementation of Python 3 running in the
-browser, with an interface to the DOM elements and events.
+> 這個分叉專案主要致力於[Brython]文檔的中文翻譯。歡迎對Brython及文檔翻譯有興趣的貢獻者參與。
+>
+> [原作者希望核心的Brython項目僅保有法語，英語和西班牙語](https://github.com/brython-dev/brython/pull/1380#issuecomment-623877881)，所以中文文檔採用分叉專案進行開發但不合併到原始專案。
+>
+> 歡迎對Brython及文檔翻譯有興趣的貢獻者參與。
+>
+> 如果您想為Brython中文文檔做貢獻，請先閱讀本專案的[貢獻指南](https://github.com/ShenTengTu/brython/blob/master/CONTRIBUTING.md)。
 
-Here is a simple example of an HTML page running Python:
+
+# Brython
+
+**[Brython]（Browser Python）** 是在瀏覽器中運行的Python 3的實現，具有與DOM元素和事件的介面。
+
+這是運行Python的HTML簡單範例：
 
 ```xml
     <html>
@@ -31,125 +39,29 @@ Here is a simple example of an HTML page running Python:
     </html>
 ```
 
-To use Brython, all there is to do is:
+要使用[Brython]，要做的就是：
+1. 載入JavaScript腳本[brython.js](http://brython.info/src/brython.js "Brython from the site brython.info")
+2. 在頁面載入時運行`brython()`，例如`<body onload="brython”>`。
+3. 在`<script type="text/python">`內編寫Python代碼。
 
-1. Load the script [brython.js](http://brython.info/src/brython.js "Brython from the site brython.info").
-2. Run the function `brython()` on page load, like `<body onload="brython()">`.
-3. Write Python code inside tags `<script type="text/python">`.
+# 文檔
+- [English](http://brython.info/static_doc/en/intro.html)
+- [French](http://brython.info/static_doc/fr/intro.html)
+- [Spanish](http://brython.info/static_doc/es/intro.html)
+- [繁體中文]
 
-
-Main features
-=============
-Brython supports the syntax of [Python 3](https://www.python.org "Python Homepage"),
-including comprehensions, generators, metaclasses, imports, etc.
-and many modules of the CPython distribution.
-
-It includes libraries to interact with DOM elements and events,
-and with existing Javascript libraries such as jQuery, 3D, Highcharts, Raphael etc.
-It supports the latest specs of HTML5/CSS3, and can use CSS Frameworks like
-Bootstrap3, LESS, SASS etc.
-
-
-Getting started
-===============
-Zero install !
---------------
-The most simple way to get started, without anything to install, is to use the
-distribution available online through [jsDelivr](https://www.jsdelivr.com/).
-You can choose the latest stable release :
-
-```xml
-<script type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/brython@3.8.8/brython.min.js">
-</script>
-```
-
-The previous code will allow you to use raw python code, but if you import
-modules from the standard library you have to load a single javascript file
-with the [available stdlib](https://github.com/brython-dev/brython/tree/master/www/src/Lib):
-
-```xml
-<script type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/brython@3.8.8/brython_stdlib.js">
-</script>
-```
-
-If you want to use the latest development version, you can load these scripts
-instead:
-```
-https://raw.githack.com/brython-dev/brython/master/www/src/brython.js
-https://raw.githack.com/brython-dev/brython/master/www/src/brython_stdlib.js
-```
-
-Local install
--------------
-To install Brython locally, if you have a CPython distribution with `pip` :
-
-```bash
-pip install brython
-```
-
-then create a new directory and run
-
-```bash
-python -m brython --install
-```
-
-or by loading the latest version of the Brython zip file from the
-[releases page](https://github.com/brython-dev/brython/releases).
-
-In both cases, the distribution includes __brython.js__ (the core Brython engine)
-and __brython_stdlib.js__ (a bundle of all the files in the standard distribution).
-
-It also includes the page __demo.html__ that shows a few examples of how you
-can interact with a web page using Python as the scripting language : create
-new elements, access and modify existing elements, create graphics, animations,
-send Ajax requests, etc.
-
-Test Brython online
-===================
-If you want to test Brython online you can visit the following:
-
-- [Editor](http://brython.info/tests/editor.html "Online Brython Editor")
-- [Console](http://brython.info/tests/console.html "Online Brython Console")
+社群貢獻
+========
+**Brython**
+- 回報Brython錯誤/問題，或者建議新功能，請到原始專案的[Issues頁面](https://github.com/brython-dev/brython/issues)。
+- 如果您想為Brython做貢獻，請先閱讀原始專案的[貢獻指南](https://github.com/brython-dev/brython/blob/master/CONTRIBUTING.md)。
+- [brython - Google網上論壇](https://groups.google.com/forum/?fromgroups=#!forum/brython)
 
 
-Gallery of examples
-===================
-There is a [gallery of examples](http://brython.info/gallery/gallery_en.html "gallery of examples")
-where you can see simple and advanced examples using vanilla Brython or
-interacting with Javascript libraries.
+**中文文檔**
+- 回報中文文檔的錯誤/問題，或者建議，請到本專案的[Issues頁面](https://github.com/ShenTengTu/brython/issues)。
+- 如果您想為Brython中文文檔做貢獻，請先閱讀本專案的[貢獻指南](https://github.com/ShenTengTu/brython/blob/master/CONTRIBUTING.md)。
 
 
-Documentation
-=============
-You can start by reading the official [Brython tutorial](https://brython.info/static_tutorial/en/index.html).
 
-Full documentation is available on the [official site](http://www.brython.info "Brython Homepage").
-You can read the docs in [English](http://brython.info/static_doc/en/intro.html),
-[French](http://brython.info/static_doc/fr/intro.html) and
-[Spanish](http://brython.info/static_doc/es/intro.html).
-
-The most updated docs usually are the English and French versions so if you
-want to be up-to-date, please, use these versions.
-
-Curious about [how Brython works](https://github.com/brython-dev/brython/wiki/How%20Brython%20works) ?
-
-A [tutorial](https://github.com/brython-dev/brython/wiki/Writing-an-Android-application)
-explains how to build Android applications with Brython.
-
-Community (questions, feedback, issues, new features, ...)
-==========================================================
-You can subscribe and post to the
-[mailing list](https://groups.google.com/forum/?fromgroups=#!forum/brython "Brython Main Mailing List").
-
-If you find a bug/issue or do you want to see a new feature in Brython, please,
-[open a new issue](https://github.com/brython-dev/brython/issues "Brython GitHub Issues").
-
-If you want to contribute to Brython, please read the [contributing guide](https://github.com/brython-dev/brython/blob/master/CONTRIBUTING.md).
-
-Thank you
-=========
-
-- [BrowserStack](http://www.browserstack.com) for providing an access
-to their online testing environment.
+[Brython]: https://github.com/brython-dev/brython

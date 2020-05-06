@@ -87,7 +87,13 @@ setup/data/*.js
 
 # Files created by make_doc
 www/static_doc
+www/static_tutorial
+L10n/www/static_doc
+L10n/www/static_tutorial
 
 # Jetbrains IDEs
 *.iml
 .idea
+
+# VS Code
+.vscode

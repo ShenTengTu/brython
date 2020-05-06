@@ -81,7 +81,7 @@ def show(language=None):
 
     menu = Menu(_banner, default_css=False)
 
-    menu.add_item(trans_menu["menu_tutorial"][language],
+   menu.add_item(trans_menu["menu_tutorial"][language],
         callback=load_page("tutorial"))
 
     menu.add_item(trans_menu["menu_demo"][language],
@@ -105,7 +105,7 @@ def show(language=None):
     ex_resources.add_item(trans_menu["menu_dev"][language],
         callback=load_page("dev"))
     ex_resources.add_item(trans_menu["menu_groups"][language],
-        callback=load_page("groups"))
+        callback=load_page("groups")) 
 
     # insert language selection menu
     sel_lang = html.DIV(Class="sel_lang")
