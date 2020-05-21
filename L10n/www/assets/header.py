@@ -30,10 +30,10 @@ trans_menu = {
 }
 links = {
     "home": "/index.html",
-    "console": "/tests/console.html",
-    "demo": "/demo.html",
-    "editor": "/tests/editor.html",
-    "gallery": "/gallery/gallery_{language}.html",
+    "console": "https://www.brython.info/tests/console.html",  # official
+    "demo": "https://www.brython.info/demo.html",  # official
+    "editor": "https://www.brython.info/tests/editor.html",  # official
+    "gallery": "https://www.brython.info/gallery/gallery_en.html",  # official
     "doc": "/static_doc/{language}/intro.html",
     "download": "https://github.com/brython-dev/brython/releases",
     "dev": "https://github.com/brython-dev/brython",
@@ -78,9 +78,14 @@ def show(language=None):
             current = "doc"
 
     def load_page(key):
+        officials = ["console", "demo", "editor", "gallery"]
+
         def f(e):
             href = links[key].format(language=language)
-            window.location.href = href + f"?lang={language}"
+            if key in officials:
+                window.location.href = href
+            else:
+                window.location.href = href + f"?lang={language}"
 
         return f
 
