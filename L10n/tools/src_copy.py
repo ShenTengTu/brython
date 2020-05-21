@@ -9,12 +9,32 @@ dest_path = path_project.joinpath("L10n/www/src")
 def ignore_function(root, dirs, files):
     ignore_list = []
     path_root = pathlib.Path(root)
-    for d in dirs:
-        path_d = path_root.joinpath(d)
-        if path_d.match("www/src/Lib"):
-            ignore_list.append(path_d)
-        if path_d.match("www/src/libs"):
-            ignore_list.append(path_d)
+
+    if path_root.match("www/src/Lib"):
+        for d in dirs:
+            if d in ["browser"]:
+                continue
+            ignore_list.append(path_root.joinpath(d))
+        ignore_list.extend([path_root.joinpath(f) for f in files])
+
+    if path_root.match("www/src/Lib/browser"):
+        for d in dirs:
+            if d in ["widgets"]:
+                continue
+            ignore_list.append(path_root.joinpath(d))
+        for f in files:
+            if f in ["highlight.py"]:
+                continue
+            ignore_list.append(path_root.joinpath(f))
+
+    if path_root.match("www/src/libs"):
+        for d in dirs:
+            ignore_list.append(path_root.joinpath(d))
+        for f in files:
+            if f in ["_jsre.js"]:
+                continue
+            ignore_list.append(path_root.joinpath(f))
+
     return ignore_list
 
 

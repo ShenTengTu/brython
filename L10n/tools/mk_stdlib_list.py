@@ -26,7 +26,9 @@ doc_folder = path_project.joinpath("L10n/www/doc")
 static_doc_folder = path_project.joinpath("L10n/www/static_doc")
 
 if not static_doc_folder.exists():
-    import mk_doc
+    from .mk_doc import make_doc
+
+    make_doc()
 
 for lang in languages:
 

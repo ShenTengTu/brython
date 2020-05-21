@@ -16,7 +16,7 @@ def insert_sys_path(path):
 
 def copy_file(src: pathlib.Path, dest: pathlib.Path):
     if not dest.parent.exists():
-        dest.parent.mkdir()
+        dest.parent.mkdir(parents=True)
     shutil.copyfile(src, dest)
     print(src, "\n  >>", dest)
 
