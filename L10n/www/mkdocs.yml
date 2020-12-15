@@ -1,0 +1,27 @@
+site_name: Brython
+
+repo_url: https://github.com/ShenTengTu/brython
+
+site_description: Brython - 客戶端Python文檔
+
+site_author: Pierre Quentel, Shen-Teng Tu
+
+site_favicon: favicon.png
+
+theme: 'mkdocs'
+# theme: 'readthedocs'
+# theme: 'cerulean'
+# theme: 'slate'
+
+docs_dir: 'docs'
+
+site_dir: 'html'
+
+dev_addr: 0.0.0.0:8000
+
+# markdown_extensions: [smartypants]
+
+
+pages:
+    - ['index.md', '文檔']
+    - ['zh-hant/intro.md', '繁體中文', '文檔介紹']

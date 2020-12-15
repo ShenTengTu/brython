@@ -1,194 +1,85 @@
-# How to contribute
+# 貢獻指南
+> 如果您想為Brython做貢獻，請閱讀原始專案的[貢獻指南](https://github.com/brython-dev/brython/blob/master/CONTRIBUTING.md)。
 
-In the Brython project we welcome contributions from everyone. There are
-many ways how you can contribute and not all of them require you to be
-proficient in Python or Javascript (though some knowledge of at least one
-of these is of course necessary). Also contributions are not limited to
-coding. We also welcome
+這個分叉專案主要致力於[Brython]文檔的中文翻譯。[原作者希望核心的Brython項目僅保有法語，英語和西班牙語](https://github.com/brython-dev/brython/pull/1380#issuecomment-623877881)，所以中文文檔採用分叉專案進行開發但不合併到原始專案。
 
-* contributions to the documentation
-* participating in discussions on the [mailing list](https://groups.google.com/forum/#!forum/brython)
-* filing and/or triaging [issues](https://github.com/brython-dev/brython/issues) on GitHub
-* talking about Brython at conferences, blogging about it, promoting it in
-  forums
-* giving information about the applications developed with it
+希望參與翻譯的貢獻者能保持追踪原始專案的動態。
 
-Please note that we do **not** welcome financial contributions. Although we
-appreciate the good intentions, in our opinion, these would ruin the fun of
-the project and introduce a risk of tensions between the core team and
-contributors paid for their work on Brython. Our policy is quite strict in
-this regard and we do not accept them in any form (bounties, ...). If you like
-Brython and would like to express your appreciation for the project
-financially, consider donating to the
-[Python Software Foundation](https://www.python.org/psf/donations/).
+## 分支架構
+`up-mirror`: Brython原始專案`master`分支的鏡像
+`master`:本分叉專案主分支
+`develop`: 本分叉專案主開發分支
+`l10n-zh-hant`: 本分叉專案繁體中文文檔開發分支
 
-The documentation included in the project and on brython.info is provided in
-English, French and Spanish. Translations in other languages are very much
-appreciated, but because it is important that the official documentation
-remains up-to-date, they should be developed in a fork of the project.
+## 存儲庫佈局
+除了下列描述的資料夾及檔案，基本上目錄架構與Brython原始專案相似：
+- `L10n`: 翻譯工作區資料夾
+  - `tools`: 翻譯工作輔助腳本資料夾
+  - `www`: 翻譯原始文檔及網頁原始碼資料夾，與原始專案的`www`相似
+  - `.editorconfig`
+- `docs`: GitHub Page發布源資料夾
 
-## Getting Started
+## 代碼格式
+有一些約定如下。
 
-* Make sure you have a [GitHub account](https://github.com/signup/free).
-* [Create an Issue](https://github.com/brython-dev/brython/issues/new) on
-  Github, assuming one does not already exist. Clearly describe the issue
-  including steps to reproduce when it is a bug.
-* Fork the repository on GitHub.
-* clone your repo using git
-* (*optionally*) install the development requirements using [pipenv](https://docs.pipenv.org/) (**strongly** recommended):
+### 編輯器
+使用“[EditorConfig]”保持一致，規則在`.editorconfig`中聲明。在編寫腳本之前，需要配置編輯器以使EditorConfig起作用。
 
-```bash
-    $ pipenv install --dev
-```
-  or (not recommended)
-```bash
-    $ pip install -r requirements.txt
-```
-  If you used `pipenv`, the development requirements are installed into a separate
-  [virtual environment](https://docs.python.org/3/tutorial/venv.html) which you can activate
-  by running
-```bash
-    $ pipenv shell
-```
-  from the terminal.
+[EditorConfig]: https://editorconfig.org/
 
+### Python
+遵循“[Black]”樣式和`pyproject.toml`中的選項以保持代碼格式一致。在發出拉取請求之前，請執行`black`格式化代碼。
 
-## Making Changes
+[Black]: https://black.readthedocs.io/en/stable/
 
-* Create a topic branch from where you want to base your work. To quickly
-  create a topic branch based on master, run
-```bash
-    $ git checkout -b fix/master/my_contribution master
-```
-* Make commits of logical units.
-* For Javascript code, there is a
-  [Javascript coding style](https://github.com/brython-dev/brython/wiki/Javascript-coding-style-for-Brython-scripts).
-  It is not mandatory and pull requests won't be rejected for this reason, but
-  it helps having a uniform style for all scripts.
-* Check for unnecessary whitespace with `git diff --check` before committing.
-* Make sure your commit messages are in the proper format. If the commit
-  addresses an issue on Github, start the first line of the commit with the
-  issue number in parentheses.
-* If possible, write a unit-test for your changes (see below).
-* Run _all_ the test suite (see below) to ensure nothing else was accidentally
-  broken.
-
-## Repository Layout
-
-  - `scripts`   - miscellaneous release helper scripts
-  - `www`
-    - `doc` - directory with documentation (as visible [here](http://www.brython.info/static_doc/en/intro.html?lang=en)); documentation is generated using the `scripts/make_doc.py` script.
-    - `gallery` - a directory containing example Brython programs (see [Gallery](http://www.brython.info/gallery/gallery_en.html?lang=en))
-    - `src`
-        - `Lib` - Brython implementation of the modules from Python's standard
-          library. Quite a few files here are just copies of the corresponding
-          file from the CPython distribution; The files here are written in
-          Python.
-        - `libs` - Javascript implementation of some modules from the standard
-          library (for which a Python implementation is either too slow or
-          cumbersome)
-        - `brython.js`, `brython_stdlib.js` - the Brython release files
-          (generated by `scripts/make_dist.py`)
-        - `py2js.js` the Python parser & compiler (see [Brython Internals](https://github.com/brython-dev/brython/wiki/How-Brython-works) for more details)
-        - `py_bytes.js`, `py_comples.js`, `py_dict.js`, `py_float.js`,
-          `py_int.js`, `py_list.js`, `py_long_int.js`, `py_set.js`,
-          `py_string.js`, `py_range_slice.js` - Javascript implementations of
-          Python types
-        - `py_generator.js` - Javascript implementation of generators
-        - `py_exceptions.js` - Basic implementation of Exceptions
-        - `py_builtin_functions.js` - Implementation of Python builtins
-        - `py_object.js` - Implementation of Python Objects (see [Brython Internals](https://github.com/brython-dev/brython/wiki/How-Brython-works) for more details)
-        - `py_import.js`, `py_import_hooks.js` - modules & the import
-          machinery
-        - `js_objects.js` - Python <-> Javascript interface (code for
-          accessing external javascript objects from Python and vice versa)
-        - `builtin_modules.js` - implementation of some Brython specific
-          modules (html, browser, ...)
-
-
-## Testing
-
-### Testing changes in development
-
-Running
-
-```bash
-    $ python3 server.py
-```
-or
-```bash
-    $ ./manage.py devel server
+## 入門
+- 在GitHub上分叉這個專案的存儲庫。 使用git克隆您分叉的存儲庫。
+- 強烈建議使用`pipenv`創建虛擬環境來安裝開發需求：
+```console
+$ pipenv install --dev
 ```
 
-
-in a terminal window opened in the checkout directory should open a browser
-window with a local copy of the [www.brython.info](https://www.brython.info)
-website. You can use the
-[console](http://localhost:8000/tests/console.html?lang=en) and
-[editor](http://localhost:8000/tests/editor.html?lang=en) sections to try
-out your changes to Brython.
-
-### Running the test suite before committing
-
-Navigating to [localhost:8000/tests](http://localhost:8000/tests/)
-you can run the full Brython test suite manually by clicking on "Run all
-tests".
-
-Every commit is tested on [Travis CI](https://travis-ci.org/brython-dev/brython).
-To run the same tests locally you first have to install the
-[Testem](https://github.com/testem/testem) test runner.
-
-Assuming you have `node.js` and `npm`/`yarn` this can be done via
-
-```bash
-    $ npm install testem
-```
-or
-```bash
-    $ yarn add testem
-```
-or
-```bash
-    $ ./manage.py ci get_testem
+將開發需求安裝到單獨的虛擬環境中，您可以通過運行以下命令終端激活虛擬環境：
+```console
+$ pipenv shell
 ```
 
-Running the tests is then just a matter of
-```bash
-    $ ./manage.py ci run_tests
+## 做出更動
+基本上工作區域會在`L10n`資料夾及`docs`資料夾。
+
+從您想作為工作基礎的位置創建一個主題分支，建議以`develop`分支為基礎創建主題分支：
+```console
+$ git checkout -b topic-branch develop
 ```
-or
-```bash
-    $ ./node_modules/.bin/testem -t www/tests/qunit/run_tests.html ci
+
+-  依照原始專案的文檔(`*.md`)進行翻譯。
+-  在遵循原始專案的風格的前提下調整網頁架構。
+
+## 開發工具`L10n.tools`
+- 生成文檔網頁：
+```console
+python -m L10n.tools.mk_doc
 ```
 
-### Writing tests
+- 生成stdlib列表：
+```console
+python -m L10n.tools.mk_stdlib_list
+```
 
-To prevent regressions, it is good practice to write tests for the bugs you
-fix or the features you add. These tests live in the `www/tests` subdirectory.
-Tests for bugs should go into the file `www/tests/issues.py` (just add your test
-to the end of the file, preceding it with a comment mentioning the issue number
-on Github and the issue title). Tests for substantial new functionality should
-go into their own separate file (e.g. `www/tests/test_webworkers.py`). This file
-should then be included in `www/tests/brython_test_utils/__init__.py` by adding
-a line to the `discover_brython_test_modules` method.
+- 將需要的原始專案的源代碼(`www/src`)複製到(`L10n/www/src`)：
+```
+python -m L10n.tools.src_copy
+```
 
-All tests currently use plain assert statements (no unittest/setup/teardown).
+- 將需要的原始專案的HTML檔案(`www/*`)複製到(`L10n/www/*`)：
+```
+python -m L10n.tools.html_copy
+```
 
-
-## Submitting Changes
-
-* Push your changes to a topic branch in your fork of the repository.
-* Submit a pull request to the [Brython repository](https://github.com/brython-dev/brython)
-
-## Additional Resources
-
-* [Brython Internals](https://github.com/brython-dev/brython/wiki/How-Brython-works)
-* [Brython Documentation](http://www.brython.info/static_doc/en/intro.html?lang=en)
-* [Mailing List](https://groups.google.com/forum/#!forum/brython)
-* [General GitHub documentation](https://help.github.com/)
-* [GitHub pull request documentation](https://help.github.com/articles/creating-a-pull-request/)
-
-## Acknowledgements
-
-Parts of the document copied from / based on [Puppet contributing guide](https://github.com/puppetlabs/puppet/blob/master/CONTRIBUTING.md).
+## 預覽文檔網頁
+1. 使用Python建立的Server。要看見變動，需使用瀏覽器的刊發人員工具將storage及cache並重載頁面。
+```
+$ python -m L10n.tools.server
+```
+2. 如果使用`VS Code`，可以使用具有實時瀏覽器重新加載功能的[Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)延伸模組。
 
